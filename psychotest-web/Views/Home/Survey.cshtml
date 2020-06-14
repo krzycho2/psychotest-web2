@@ -1,0 +1,90 @@
+﻿@model SurveyResult
+
+    <head>
+        <meta charset="UTF-8">
+
+        <script src="~/js/site.js">
+        </script>
+
+    </head>
+    <h2>Ankieta</h2>
+    <form method="post" asp-controller="Home" asp-action="SurveyForm" lang="pl" accept-charset="utf-8">
+        <h5>1.  Jak bardzo byłeś skupiony/skupiona na wykonywanym zadaniu?</h5>
+        <label>Wcale nie&emsp;</label>
+        <label><input asp-for="Q1Answer" value="1" type="radio" title="q1" /> 1&emsp;</label>
+        <label><input asp-for="Q1Answer" value="2" type="radio" title="q1" /> 2&emsp;</label>
+        <label><input asp-for="Q1Answer" value="3" type="radio" title="q1" /> 3&emsp;</label>
+        <label><input asp-for="Q1Answer" value="4" type="radio" title="q1" /> 4&emsp;</label>
+        <label><input asp-for="Q1Answer" value="5" type="radio" title="q1" /> 5&emsp;</label>
+        <label>&emsp;Bardzo</label>
+        <br>
+        <br>
+
+        <h5>Jak bardzo otwarta karta Facebooka rozpraszała/ mogłaby rozpraszać Cię podczas wykonywania zadania?</h5>
+        <label>Wcale nie&emsp;</label>
+        <label><input asp-for="Q2Answer" value="1" type="radio" title="q2" onchange="check_survey_enable()" /> 1&emsp;</label>
+        <label><input asp-for="Q2Answer" value="2" type="radio" title="q2" onchange="check_survey_enable()" /> 2&emsp;</label>
+        <label><input asp-for="Q2Answer" value="3" type="radio" title="q2" onchange="check_survey_enable()" /> 3&emsp;</label>
+        <label><input asp-for="Q2Answer" value="4" type="radio" title="q2" onchange="check_survey_enable()" /> 4&emsp;</label>
+        <label><input asp-for="Q2Answer" value="5" type="radio" title="q2" onchange="check_survey_enable()" /> 5&emsp;</label>
+        <label>&emsp;Bardzo</label>
+        <br>
+        <br>
+
+        <h5>3.  W jakim stopniu otwarta karta Facebooka może wpływać na Twoją efektywność?</h5>
+        <label>Wcale nie&emsp;</label>
+        <label><input asp-for="Q3Answer" value="1" type="radio" title="q3" onchange="check_survey_enable()" /> 1&emsp;</label>
+        <label><input asp-for="Q3Answer" value="2" type="radio" title="q3" onchange="check_survey_enable()" /> 2&emsp;</label>
+        <label><input asp-for="Q3Answer" value="3" type="radio" title="q3" onchange="check_survey_enable()" /> 3&emsp;</label>
+        <label><input asp-for="Q3Answer" value="4" type="radio" title="q3" onchange="check_survey_enable()" /> 4&emsp;</label>
+        <label><input asp-for="Q3Answer" value="5" type="radio" title="q3" onchange="check_survey_enable()" /> 5&emsp;</label>
+        <label>&emsp;Bardzo</label>
+        <br>
+        <br>
+
+        <h5>4. Czy podczas wykonywania zadania byłeś sam w pomieszczeniu? </h5>
+        <label><input asp-for="Q4Answer" value="yes" type="radio" title="q4" onchange="check_survey_enable()" /> Tak&emsp;</label>
+        <label><input asp-for="Q4Answer" value="no" type="radio" title="q4" onchange="check_survey_enable()" /> Nie&emsp;</label>
+        <br>
+        <br>
+
+        <h5>5. Czy podczas wykonywania zadania coś Ci przeszkodziło? </h5>
+        <label><input asp-for="Q5Answer" value="yes" type="radio" onclick="document.getElementById('custom').hidden = false" title="q5" onchange="check_survey_enable()" /> Tak&emsp;</label>
+        <input type="text" id="custom" placeholder="Co takiego?" asp-for="Q5Answer" hidden onchange=" document.querySelector('input[title=q5]').value = this.value" />
+        <label><input asp-for="Q5Answer" value="no" type="radio" onclick="document.getElementById('custom').hidden=true" title="q5" onchange="check_survey_enable()" /> Nie</label>
+        <br>
+        <br>
+
+        <h5>6. Czy wyniosłaś/wyniosłeś telefon do innego pomieszczenia? </h5>
+        <label><input asp-for="Q6Answer" value="yes" type="radio" title="q6" onchange="check_survey_enable()" /> Tak&emsp;</label>
+        <label><input asp-for="Q6Answer" value="no" type="radio" title="q6" onchange="check_survey_enable()" /> Nie&emsp;</label>
+        <br>
+        <br>
+
+        <h5>7. Czy widok ekranu był zgodny z tym sugerowanym przez asystenta? </h5>
+        <label><input asp-for="Q7Answer" value="yes" type="radio" title="q7" onchange="check_survey_enable()" /> Tak&emsp;</label>
+        <label><input asp-for="Q7Answer" value="no" type="radio" title="q7" onchange="check_survey_enable()" /> Nie&emsp;</label>
+        <br>
+        <br>
+
+
+        <h5>8.  Wiek</h5>
+        <input asp-for="Q8Answer" type="text" size="2" title="q8" onchange="check_survey_enable()" onkeypress="validate(event)" />
+        <br>
+        <br>
+
+        <h5>9. Płeć</h5>
+        <label><input asp-for="Q9Answer" value="male" type="radio" title="q9" onchange="check_survey_enable()" /> Mężczyzna&emsp;</label>
+        <label><input asp-for="Q9Answer" value="female" type="radio" title="q9" onchange="check_survey_enable()" /> Kobieta</label>
+        <br>
+        <br />
+
+        <hr />
+        <h3>Jeśli chcesz dowiedzieć się, jakie były wyniki badań, zostaw nam swój e-mail.</h3>
+        <label>Adres e-mail: </label>
+        <input type="email" asp-for="Email" />
+        <br />
+        <br />
+        <input type="submit" value="Zakończ badanie" disabled id="submit_survey" />
+    </form>
+    

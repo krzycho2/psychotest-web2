@@ -1,0 +1,64 @@
+﻿@model UserIDModel
+
+<h1> Badanie WIK3 </h1>
+Witamy w badaniu! Prosimy o zapoznanie się z instrukcją poniżej.
+<br />
+<br />
+1) Przed przystąpieniem do badania upewnij się, że zastosowałeś się do instrukcji podanych przez asystenta na Facebooku
+ i zadbałeś o odpowiednie warunki na czas wykonywania badania.
+<br />
+2) Prosimy o rozwiązanie zadania składającego się z 50 prostych punktów.
+Należy wpisywać cyfry do odpowiadających im figur, zgodnie z przykładem.
+<br />
+<br />
+
+<h2>Przykład</h2>
+
+<p class="text1">Instrukcja</p>
+<div class="nav">
+    @foreach (var example in QuestCreator.CreateExampleInstructionQuests())
+    {
+        <div>
+            <img src=@example.ShapeIconPath><br>
+            <label>@example.CorrectAnswer</label>
+        </div>
+    }
+
+</div>
+<br />
+<p class="text1">Rozwiązanie</p>
+<div class="nav">
+    @foreach (var example in QuestCreator.CreateExampleQuests())
+    {
+        <div>
+            <img src=@example.ShapeIconPath><br>
+            <input type="text" value=@example.UserAnswer disabled size="1" style="text-align:center">
+        </div>
+
+    }
+
+</div>
+<br />
+3) Anonimowy identyfikator (ID) otrzymasz od przeprowadzającego test za pośrednictwem Facebooka. Wyślij wiadomość do 
+asystenta o treści „Proszę o numer ID”. Po zakończeniu badania, konto WIK3 zostanie usunięte.
+<br />
+<br />
+Aby rozpocząć wpisz w pole poniżej identyfikator otrzymany od przeprowadzającego badanie.
+<br/><br/>
+
+<form method="post" asp-controller="Home" asp-action="IDform">
+    <label asp-for="UserID">Identyfikator</label>
+    <input asp-for="UserID" type="text" id="user_id" />
+    <input type="submit" value="Rozpocznij test" /> <br />
+    @if (Model.idValidationResult == IdValidationResult.IdIncorrect)
+    {
+        <label style="color:red">Niepoprawny ID!</label>
+    }
+    else if (Model.idValidationResult == IdValidationResult.IdUsed)
+    {
+        <label style="color:red">Badanie już wykonane!</label>
+    }
+
+</form>
+
+

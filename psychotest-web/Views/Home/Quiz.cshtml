@@ -1,0 +1,39 @@
+﻿
+@model QuizViewModel
+
+<head>
+    <script src="~/js/site.js">
+        
+    </script>
+
+</head>
+<body>
+    <p class="text1">Instrukcja</p>
+    <div class="nav">
+        @foreach (var quest in Model.TutorialQuests)
+        {
+            <div>
+                <img src=@quest.ShapeIconPath><br />
+                @quest.shape.ShapeNum
+            </div>
+        }
+    </div>
+    <br />
+    <p class="text1">Zadania do wykonania</p>
+    <form method="post" asp-controller="Home" asp-action="QuizForm">
+        <div class="nav">
+            @for (int i = 0; i < Model.Quests.Count; i++)
+            {
+                <div>
+                    <img src=@Model.Quests[i].ShapeIconPath><br>
+
+                    <input asp-for="@Model.Quests[i].UserAnswer" type="text" size="1" style="text-align:center" onkeypress="validate(event)" onkeyup="quiz_check_enable()"/>
+                </div>
+                
+            }
+
+        </div>
+        <br />
+        <input type="submit" value="Zakończ test" disabled id="submit_quiz"/>
+    </form>
+</body>
